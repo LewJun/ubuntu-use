@@ -3,6 +3,9 @@ ubuntu 18.04.1
 
 [TOC]
 
+## apt install 过程出现失败，可以尝试如下命令
+> sudo apt  --fix-broken install
+
 ## Ubuntu su认证失败解决方法
 lewjun@ubuntu:~$ sudo passwd
 Password: <--- 输入安装时那个用户的密码
