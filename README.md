@@ -3,6 +3,18 @@ ubuntu 18.04.1
 
 [TOC]
 
+## date
+> date -s '2018-08-27 00:24:00'
+
+## git
+```
+1. 安装
+sudo apt install git
+2. 配置
+$ git config --global user.name 'lewjun072'
+$ git config --global user.email 'lewjun072@sina.com'
+```
+
 ## vim
 在没有安装vim之前，直接使用vi编辑文件时候，输入i时，没有提示输入状态，并且还有其它问题
 apt install vim
