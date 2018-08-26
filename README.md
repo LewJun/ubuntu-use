@@ -3,6 +3,42 @@ ubuntu 18.04.1
 
 [TOC]
 
+## 压缩
+tar –cvf jpg.tar *.jpg //将目录里所有jpg文件打包成tar.jpg 
+tar –czf jpg.tar.gz *.jpg //将目录里所有jpg文件打包成jpg.tar后，并且将其用gzip压缩，生成一个gzip压缩过的包，命名为jpg.tar.gz 
+tar –cjf jpg.tar.bz2 *.jpg //将目录里所有jpg文件打包成jpg.tar后，并且将其用bzip2压缩，生成一个bzip2压缩过的包，命名为jpg.tar.bz2 
+tar –cZf jpg.tar.Z *.jpg //将目录里所有jpg文件打包成jpg.tar后，并且将其用compress压缩，生成一个umcompress压缩过的包，命名为jpg.tar.Z 
+rar a jpg.rar *.jpg //rar格式的压缩，需要先下载rar for linux 
+zip jpg.zip *.jpg //zip格式的压缩，需要先下载zip for linux
+
+## 解压
+tar –xvf file.tar //解压 tar包 
+tar -xzvf file.tar.gz //解压tar.gz 
+tar -xjvf file.tar.bz2 //解压 tar.bz2 
+tar –xZvf file.tar.Z //解压tar.Z 
+unrar e file.rar //解压rar 
+unzip -o file.zip //解压zip -o 覆盖
+
+## 安装sublime
+1. wget https://download.sublimetext.com/sublime_text_3_build_3176_x64.tar.bz2
+2. sudo cp Downloads/sublime_text_3_build_3176_x64.tar.bz2 /usr/local/
+3. tar -xjf ./sublime_text_3_build_3176_x64.tar.bz2
+4. cd sublime_text_3/
+5. ./sublime_text
+6. 安装 Package Control
+> https://packagecontrol.io/installation
+7. ctrl+shift+p > install package > prety json
+8. remove package > prety json
+
+## gpg: no valid OpenPGP data found.
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+gpg: no valid OpenPGP data found.
+> curl -O https://download.sublimetext.com/sublimehq-pub.gpg
+
+## curl
+1. install
+> sudo apt install curl
+
 ## apt install 过程出现失败，可以尝试如下命令
 > sudo apt  --fix-broken install
 
