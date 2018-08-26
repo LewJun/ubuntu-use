@@ -3,6 +3,21 @@ ubuntu 18.04.1
 
 [TOC]
 
+## 安装&配置jdk
+```
+1. 下载
+到http://www.oracle.com官方网站下载合适的jdk
+2. cd /usr/local/jdk
+sudo cp /home/lewjun/Downloads/jdk-8u181-linux-x64.tar.gz ./
+3. sudo tar -xzvf jdk-8u181-linux-x64.tar.gz 
+4. sudo vim /etc/profile
+export JAVA_HOME=/usr/local/jdk/jdk1.8.0_181
+export PATH=$JAVA_HOME/bin:$PATH
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+5. source /etc/profile
+6. javac -version
+```
+
 ## 压缩
 ```
 tar –cvf jpg.tar *.jpg //将目录里所有jpg文件打包成tar.jpg 
