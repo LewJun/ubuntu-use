@@ -3,6 +3,21 @@ ubuntu 18.04.1
 
 [TOC]
 
+## redis
+```
+$ wget http://download.redis.io/releases/redis-4.0.11.tar.gz
+$ tar xzf redis-4.0.11.tar.gz
+$ cd redis-4.0.11
+$ make
+$ src/redis-server
+# 另启一个窗口
+$ src/redis-cli
+redis> set foo bar
+OK
+redis> get foo
+"bar"
+```
+
 ## date
 > date -s '2018-08-27 00:24:00'
 
