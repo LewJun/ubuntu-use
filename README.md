@@ -5,10 +5,13 @@ ubuntu 18.04.1
 
 ## redis
 ```
+$ sudo apt install make
+$ sudo apt install gcc
+$ sudo apt install tcl
 $ wget http://download.redis.io/releases/redis-4.0.11.tar.gz
 $ tar xzf redis-4.0.11.tar.gz
 $ cd redis-4.0.11
-$ make
+$ sudo make
 $ src/redis-server
 # 另启一个窗口
 $ src/redis-cli
