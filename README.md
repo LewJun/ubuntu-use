@@ -3,6 +3,16 @@ ubuntu 18.04.1
 
 [TOC]
 
+## Apache Maven
+```
+创建j2se项目
+mvn archetype:generate -DgroupId=com.microandroid -DartifactId=hij2se -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false -X -DarchetypeCatalog=local
+
+创建j2ee项目
+mvn archetype:generate -DgroupId=com.microandroid -DartifactId=hij2ee -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false -X -DarchetypeCatalog=local
+
+```
+
 ## redis
 ```
 $ sudo apt install make
