@@ -19,6 +19,20 @@ redis> set foo bar
 OK
 redis> get foo
 "bar"
+
+将安装目录下的redis.conf
+# requirepass foobared 取消注释，那么表示需要密码，密码默认为foobared
+./redis-server ../redis.conf
+./redis-cli 
+auth foobared
+./redis-cli --help
+  -h <hostname>      Server hostname (default: 127.0.0.1).
+  -p <port>          Server port (default: 6379).
+  -s <socket>        Server socket (overrides hostname and port).
+  -a <password>      Password to use when connecting to the server.
+  -n <db>            Database number.
+
+./redis-cli -h 127.0.0.1 -p 6379 -a foobared -n 1
 ```
 
 ## date
