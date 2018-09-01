@@ -3,6 +3,14 @@ ubuntu 18.04.1
 
 [TOC]
 
+## sdk
+### 安装
+```
+sudo curl -s https://get.sdkman.io | bash
+source "/home/lewjun/.sdkman/bin/sdkman-init.sh"
+sdk install gradle 4.10
+```
+
 ## Apache Maven
 ```
 创建j2se项目
