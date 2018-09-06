@@ -2,6 +2,153 @@
 ubuntu 18.04.1
 
 [TOC]
+
+## mariadb 安装
+* 安装数据库环境
+> sudo apt install -y mariadb-server mariadb-client
+
+* 安装数据库实例
+> sudo mysql_secure_installation
+```
+NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MariaDB
+      SERVERS IN PRODUCTION USE!  PLEASE READ EACH STEP CAREFULLY!
+
+In order to log into MariaDB to secure it, we'll need the current
+password for the root user.  If you've just installed MariaDB, and
+you haven't set the root password yet, the password will be blank,
+so you should just press enter here.
+
+Enter current password for root (enter for none): 
+OK, successfully used password, moving on...
+
+Setting the root password ensures that nobody can log into the MariaDB
+root user without the proper authorisation.
+
+You already have a root password set, so you can safely answer 'n'.
+
+Change the root password? [Y/n] n
+lewjun@ubuntu:~$ sudo mysql_secure_installation
+
+NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MariaDB
+      SERVERS IN PRODUCTION USE!  PLEASE READ EACH STEP CAREFULLY!
+
+In order to log into MariaDB to secure it, we'll need the current
+password for the root user.  If you've just installed MariaDB, and
+you haven't set the root password yet, the password will be blank,
+so you should just press enter here.
+
+Enter current password for root (enter for none): 
+OK, successfully used password, moving on...
+
+Setting the root password ensures that nobody can log into the MariaDB
+root user without the proper authorisation.
+
+You already have a root password set, so you can safely answer 'n'.
+
+Change the root password? [Y/n] n
+ ... skipping.
+
+By default, a MariaDB installation has an anonymous user, allowing anyone
+to log into MariaDB without having to have a user account created for
+them.  This is intended only for testing, and to make the installation
+go a bit smoother.  You should remove them before moving into a
+production environment.
+
+Remove anonymous users? [Y/n] n
+ ... skipping.
+
+Normally, root should only be allowed to connect from 'localhost'.  This
+ensures that someone cannot guess at the root password from the network.
+
+Disallow root login remotely? [Y/n] y
+ ... Success!
+
+By default, MariaDB comes with a database named 'test' that anyone can
+access.  This is also intended only for testing, and should be removed
+before moving into a production environment.
+
+Remove test database and access to it? [Y/n] y
+ - Dropping test database...
+ ... Success!
+ - Removing privileges on test database...
+ ... Success!
+
+Reloading the privilege tables will ensure that all changes made so far
+will take effect immediately.
+
+Reload privilege tables now? [Y/n] y
+ ... Success!
+
+Cleaning up...
+
+All done!  If you've completed all of the above steps, your MariaDB
+installation should now be secure.
+
+Thanks for using MariaDB!
+```
+
+* 查看MariaDB数据库服务状态 （这里也说明了MariaDB与其他Mysql数据库不能共存在同一操作系统）
+> sudo systemctl status mysql
+```
+● mariadb.service - MariaDB 10.1.34 database server
+   Loaded: loaded (/lib/systemd/system/mariadb.service; enabled; vendor preset: 
+   Active: active (running) since Fri 2018-09-07 06:17:52 HKT; 5min ago
+     Docs: man:mysqld(8)
+           https://mariadb.com/kb/en/library/systemd/
+ Main PID: 11942 (mysqld)
+   Status: "Taking your SQL requests now..."
+    Tasks: 27 (limit: 4915)
+   CGroup: /system.slice/mariadb.service
+           └─11942 /usr/sbin/mysqld
+
+Sep 07 06:17:56 ubuntu /etc/mysql/debian-start[11975]: Processing databases
+Sep 07 06:17:56 ubuntu /etc/mysql/debian-start[11975]: information_schema
+Sep 07 06:17:56 ubuntu /etc/mysql/debian-start[11975]: mysql
+Sep 07 06:17:56 ubuntu /etc/mysql/debian-start[11975]: performance_schema
+Sep 07 06:17:56 ubuntu /etc/mysql/debian-start[11975]: Phase 6/7: Checking and u
+Sep 07 06:17:56 ubuntu /etc/mysql/debian-start[11975]: Processing databases
+Sep 07 06:17:56 ubuntu /etc/mysql/debian-start[11975]: information_schema
+Sep 07 06:17:56 ubuntu /etc/mysql/debian-start[11975]: performance_schema
+Sep 07 06:17:56 ubuntu /etc/mysql/debian-start[11975]: Phase 7/7: Running 'FLUSH
+Sep 07 06:17:56 ubuntu /etc/mysql/debian-start[11975]: OK
+lines 1-21/21 (END)
+```
+
+* 启动MariaDB数据库服务
+> sudo systemctl start mysql
+
+* 设置mysql随系统服务启动
+> sudo update-rc.d  mysql defaults
+
+* 撤销随系统服务启动
+> sudo update-rc.d  -f mysql remove
+
+* 与之前版本mysql不同，需要获得操作系统管理员权限，才能登录MariaDB的root用户，普通操作系统用户不能登录MariaDB数据库root用户
+> sudo mysql -u root -p
+此时需要输入root的密码
+
+* 备份mysql数据库 也需要获得操作系统管理员才能执行备份
+> sudo mysqldump -uroot -p mysql >mysql.sql
+
+*.创建普通数据库用户 （登录普通数据库用户则不需要获得操作系统管理员权限）
+> create user 'lewjun'@'%' identified by '1';
+
+* 登录远地数据库(需要lewjun@'%')
+> mysql -h localhost -u lewjun -p1
+
+* 修改MariaDB配置文件，监听外网访问
+> sudo vim /etc/mysql/mariadb.conf.d/50-server.cnf
+# Instead of skip-networking the default is now to listen only on
+# localhost which is more compatible and is not less secure.
+#bind-address        = 127.0.0.1  #注释掉这一行
+
+* 重启数据库服务，使配置生效
+> sudo systemctl restart mysql
+
+* MariaDB版本
+> mysql -V
+
+
 ## mysql 完全卸载
 sudo apt purge mysql-*
 sudo rm -rf /etc/mysql/ /var/lib/mysql
