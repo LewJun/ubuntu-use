@@ -151,26 +151,26 @@ lines 1-21/21 (END)
 
 
 ## mysql 完全卸载
-sudo apt purge mysql-*
-sudo rm -rf /etc/mysql/ /var/lib/mysql
-sudo apt autoremove
-sudo apt autoclean
+* sudo apt purge mysql-*
+* sudo rm -rf /etc/mysql/ /var/lib/mysql
+* sudo apt autoremove
+* sudo apt autoclean
 
 ## sdk
 ### 安装
 ```
-sudo curl -s https://get.sdkman.io | bash
-source "/home/lewjun/.sdkman/bin/sdkman-init.sh"
-sdk install gradle 4.10
+* sudo curl -s https://get.sdkman.io | bash
+* source "/home/lewjun/.sdkman/bin/sdkman-init.sh"
+* sdk install gradle 4.10
 ```
 
 ## Apache Maven
 ```
-创建j2se项目
-mvn archetype:generate -DgroupId=com.microandroid -DartifactId=hij2se -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false -X -DarchetypeCatalog=local
+* 创建j2se项目
+> mvn archetype:generate -DgroupId=com.microandroid -DartifactId=hij2se -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false -X -DarchetypeCatalog=local
 
-创建j2ee项目
-mvn archetype:generate -DgroupId=com.microandroid -DartifactId=hij2ee -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false -X -DarchetypeCatalog=local
+* 创建j2ee项目
+> mvn archetype:generate -DgroupId=com.microandroid -DartifactId=hij2ee -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false -X -DarchetypeCatalog=local
 
 ```
 
