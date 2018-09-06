@@ -138,10 +138,11 @@ lines 1-21/21 (END)
 
 * 修改MariaDB配置文件，监听外网访问
 > sudo vim /etc/mysql/mariadb.conf.d/50-server.cnf
+```
 # Instead of skip-networking the default is now to listen only on
 # localhost which is more compatible and is not less secure.
-#bind-address        = 127.0.0.1  #注释掉这一行
-
+# bind-address        = 127.0.0.1  #注释掉这一行
+```
 * 重启数据库服务，使配置生效
 > sudo systemctl restart mysql
 
