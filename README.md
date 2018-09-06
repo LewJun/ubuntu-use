@@ -2,6 +2,11 @@
 ubuntu 18.04.1
 
 [TOC]
+## mysql 完全卸载
+sudo apt purge mysql-*
+sudo rm -rf /etc/mysql/ /var/lib/mysql
+sudo apt autoremove
+sudo apt autoclean
 
 ## sdk
 ### 安装
