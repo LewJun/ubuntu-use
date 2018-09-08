@@ -6,7 +6,9 @@ ubuntu 18.04.1
 ## npm
 国内使用 npm 速度很慢，可以使用淘宝定制的 cnpm (gzip 压缩支持) 命令行工具代替默认的 npm:
 > $ sudo npm install -g cnpm --registry=https://registry.npm.taobao.org
+
 > $ sudo npm config set registry https://registry.npm.taobao.org
+
 > $ sudo cnpm install -g [name]
 
 ## mariadb 安装
