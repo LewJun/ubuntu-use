@@ -170,11 +170,47 @@ lines 1-21/21 (END)
 > mysql -V
 
 
-## mysql 完全卸载
+### mysql 完全卸载
 * sudo apt purge mysql-*
 * sudo rm -rf /etc/mysql/ /var/lib/mysql
 * sudo apt autoremove
 * sudo apt autoclean
+
+### 创建数据库
+使用root登录
+> sudo mysql -u root -proot
+创建库
+> create database if not exists scott default character set utf8mb4 collate utf8mb4_unicode_ci;
+查看已经创建的表
+> show tables;
+
+### 忽略大小写
+* 查看当前大小写情况
+> show variables like '%case_table%';
+``` 
++------------------------+-------+
+| Variable_name          | Value |
++------------------------+-------+
+| lower_case_table_names | 0     |
++------------------------+-------+
+```
+0表示不忽略大小写，1表示忽略大小写。
+> sudo /etc/mysql/mariadb.conf.d/50-server.cnf
+在[mysqlld]下添加
+> lower_case_table_names=1
+重启mysql
+> sudo systemctl restart mysql
+再次查看当前大小写情况
+> show variables like '%case_table%';
+``` 
++------------------------+-------+
+| Variable_name          | Value |
++------------------------+-------+
+| lower_case_table_names | 1     |
++------------------------+-------+
+```
+修改成功
+
 
 ## sdk
 ### 安装
