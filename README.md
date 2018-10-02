@@ -184,6 +184,10 @@ lines 1-21/21 (END)
 查看已经创建的表
 > show tables;
 
+### 导入外部sql语句 source scott.sql
+mysql> use scott;
+mysql [scott]> source /home/lewjun/Documents/scott.sql;
+
 ### 忽略大小写
 * 查看当前大小写情况
 > show variables like '%case_table%';
