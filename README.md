@@ -4,26 +4,34 @@ ubuntu 18.04.1
 [TOC]
 
 ## 安装Oracle 11gr2
+
 [from](https://askubuntu.com/questions/566734/how-to-install-oracle-11gr2-on-ubuntu-14-04)
 ### Step 1: [Download](http://www.oracle.com/technetwork/database/database-technologies/express-edition/downloads/index.html) Oracle Database Express Edition.
+
 ### Step 2: Instructions before install Oracle
+
 1. Copy the downloaded file and paste it in home directory.
 
 2. Unzip using the command:
 
 > unzip oracle-xe-11.2.0-1.0.x86_64.rpm.zip 
+
 3. Install required packages using the command:
 
 > sudo apt-get install alien libaio1 unixodbc
+
 4. Enter into the Disk1 folder using command:
 
 > cd Disk1/
+
 5. Convert RPM package format to DEB package format (that is used by Ubuntu) using the command:
 
 > sudo alien --scripts -d oracle-xe-11.2.0-1.0.x86_64.rpm
+
 6. Create the required chkconfig script using the command:
 
 > sudo pico /sbin/chkconfig
+
 The pico text editor is started and the commands are shown at the bottom of the screen. Now copy and paste the following into the file and save:
 ``` bash
 #!/bin/bash
@@ -46,10 +54,13 @@ update-rc.d oracle-xe defaults 80 01
 7. Change the permission of the chkconfig file using the command:
 
 > sudo chmod 755 /sbin/chkconfig  
+
 8. Set kernel parameters. Oracle 11gR2 XE requires additional kernel parameters which you need to set using the command:
 
 > sudo pico /etc/sysctl.d/60-oracle.conf
+
 9. Copy the following into the file and save:
+
 ``` bash
 # Oracle 11g XE kernel parameters 
 fs.file-max=6815744  
@@ -60,18 +71,23 @@ kernel.shmmax=536870912
 10. Verify the change using the command:
 
 > sudo cat /etc/sysctl.d/60-oracle.conf 
+
 11. You should see what you entered earlier. Now load the kernel parameters:
 
 > sudo service procps start
+
 12. Verify the new parameters are loaded using:
 
 > sudo sysctl -q fs.file-max
+
 You should see the file-max value that you entered earlier.
 
 13. Set up /dev/shm mount point for Oracle. Create the following file using the command:
 
 > sudo pico /etc/rc2.d/S01shm_load
+
 14. Copy the following into the file and save.
+
 ``` bash
 #!/bin/sh
 case "$1" in
@@ -93,20 +109,25 @@ esac
 > sudo chmod 755 /etc/rc2.d/S01shm_load
 
 16. Now execute the following commands:
+
 ``` sh
 sudo ln -s /usr/bin/awk /bin/awk 
 sudo mkdir /var/lock/subsys 
 sudo touch /var/lock/subsys/listener
 ```
+
 Now, Reboot Your System
 
 ### Step 3: Install Oracle
+
 1. Install the oracle DBMS using the command:
 
 > sudo dpkg --install oracle-xe_11.2.0-2_amd64.deb
+
 2. Configure Oracle using the command:
 
 > sudo /etc/init.d/oracle-xe configure 
+
 ```
 Oracle Database 11g Express Edition Configuration
 -------------------------------------------------
@@ -140,6 +161,7 @@ Installation completed successfully.
 3. Setup environment variables by editting your .bashrc file:
 
 > pico ~/.bashrc
+
 4. Add the following lines to the end of the file:
 ``` sh
 export ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe
@@ -153,38 +175,49 @@ export PATH=$ORACLE_HOME/bin:$PATH
 5. Load the changes by executing your profile:
 
 > . ~/.bashrc
+
 6. Start the Oracle 11gR2 XE:
 
 > sudo service oracle-xe start
+
 7. Add user YOURUSERNAME to group dba using the command:
 
 > sudo usermod -a -G dba lewjun
+
 ### Step 4: Using the Oracle XE Command Shell
+
 1. Start the Oracle XE 11gR2 server using the command:
 
 > sudo service oracle-xe start
+
 2. Start command line shell as the system admin using the command:
 
 > sqlplus sys as sysdba
+
 Enter the password that you gave while configuring Oracle earlier. You will now be placed in a SQL environment that only understands SQL commands.
 
 3. Create a regular user account in Oracle using the SQL command:
 
 > create user lewjun identified by lewjun;
+
 Replace USERNAME and PASSWORD with the username and password of your choice. Please remember this username and password. If you had error executing the above with a message about resetlogs, then execute the following SQL command and try again:
 
 > alter database open resetlogs;
+
 4. Grant privileges to the user account using the SQL command:
 
-> grant connect, resource to USERNAME;
+> grant connect, resource to lewjun;
+
 Replace USERNAME and PASSWORD with the username and password of your choice. Please remember this username and password.
 
 5. Exit the sys admin shell using the SQL command:
 
 > exit;
+
 6. Start the commandline shell as a regular user using the command:
 
 > sqlplus
+
 Now, you can run sql commands...
 
 
