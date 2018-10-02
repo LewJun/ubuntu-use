@@ -3,6 +3,10 @@ ubuntu 18.04.1
 
 [TOC]
 
+## 执行rpm文件
+> sudo alien --scripts -d sqldeveloper-18.2.0.183.1748-1.noarch.rpm
+> dpkg -i xxx.deb
+
 ## 安装Oracle 11gr2
 
 [from](https://askubuntu.com/questions/566734/how-to-install-oracle-11gr2-on-ubuntu-14-04)
