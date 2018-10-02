@@ -107,6 +107,36 @@ Now, Reboot Your System
 2. Configure Oracle using the command:
 
 > sudo /etc/init.d/oracle-xe configure 
+```
+Oracle Database 11g Express Edition Configuration
+-------------------------------------------------
+This will configure on-boot properties of Oracle Database 11g Express 
+Edition.  The following questions will determine whether the database should 
+be starting upon system boot, the ports it will use, and the passwords that 
+will be used for database accounts.  Press <Enter> to accept the defaults. 
+Ctrl-C will abort.
+
+Specify the HTTP port that will be used for Oracle Application Express [8080]:8080
+
+/etc/init.d/oracle-xe: line 362: netstat: command not found
+Specify a port that will be used for the database listener [1521]:1521
+
+/etc/init.d/oracle-xe: line 405: netstat: command not found
+Specify a password to be used for database accounts.  Note that the same
+password will be used for SYS and SYSTEM.  Oracle recommends the use of 
+different passwords for each database account.  This can be done after 
+initial configuration:root123456
+Confirm the password:root123456
+
+Do you want Oracle Database 11g Express Edition to be started on boot (y/n) [y]:y
+
+Starting Oracle Net Listener...Done
+Configuring database...
+Done
+Starting Oracle Database 11g Express Edition instance...Done
+Installation completed successfully.
+
+```
 3. Setup environment variables by editting your .bashrc file:
 
 > pico ~/.bashrc
