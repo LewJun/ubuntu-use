@@ -211,6 +211,25 @@ lines 1-21/21 (END)
 ```
 修改成功
 
+### 解决mysql不用或任意密码也能登录
+```
+lewjun@ubuntu:~$ sudo mysql -u root -p
+mysql> update user set authentication_string=password('root123456') where user='root';
+mysql> update user set password=password('root123456') where user='root';
+mysql> update user set plugin='mysql_native_password';
+mysql> flush privileges;
+mysql> quit;
+重启 mysql
+lewjun@ubuntu:~$ sudo systemctl mysql restart;
+现在root使用任意密码登录，就会报错了。。。
+lewjun@ubuntu:~$ sudo mysql -u root -panypwd
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+使用之前设置的密码root123456即可登录成功。
+lewjun@ubuntu:~$ sudo mysql -u root -proot123456
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+
+```
+
 
 ## sdk
 ### 安装
