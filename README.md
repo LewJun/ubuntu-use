@@ -4,10 +4,12 @@ ubuntu 18.04.1
 [TOC]
 
 ## 执行rpm文件安装与卸载
+``` sh
 > sudo alien --scripts -d sqldeveloper-18.2.0.183.1748-1.noarch.rpm
 > dpkg -i xxx.deb
 > dpkg -l|grep xxx
 > apt-get remove xxx
+```
 
 ## 安装Oracle 11gr2
 
