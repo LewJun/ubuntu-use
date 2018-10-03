@@ -3,6 +3,47 @@ ubuntu 18.04.1
 
 [TOC]
 
+## 在Ubuntu上使用plsql
+在Windows环境，我还是最喜欢使用plsql来作为Oracle的可视化工具。
+### 安装wine
+``` sh
+> sudo apt-get update
+> sudo apt-get install wine
+```
+
+### 安装instantclient_11_2
+1. 下载instantclient_11_2.zip将其解压到~/.wine/drive_c/Program Files (x86)/instantclient_11_2/
+2. 使用命令`wine plsqldev906.exe`到~/.wine/drive_c/Program Files (x86)/PLSQL Developer
+3. 查看Oracle 信息
+cat /etc/profile
+```
+export ORACLE_BASE=/home/lewjun/tools/oracle11g
+export ORACLE_HOME=$ORACLE_BASE/product/11.2.0/dbhome_1
+export ORACLE_SID=orcl
+export ORACLE_UNQNAME=orcl
+export NLS_LANG=.AL32UTF8
+export PATH=${PATH}:${ORACLE_HOME}/bin/:$ORACLE_HOME/lib64
+```
+
+将ORACLE_HOME中的`tnsnames.ora`拷贝到`~/.wine/drive_c/Program Files (x86)/instantclient_11_2`
+4. 启动plsql developer `wine plsqldev.exe`
+5. 配置Oracle home和oci
+
+Tool preferences Connection
+
+``` 
+oracle home=/home/lewjun/.wine/drive_c/Program Files (x86)/instantclient_11_2
+oci lib=/home/lewjun/.wine/drive_c/Program Files (x86)/instantclient_11_2/oci.dll
+```
+
+6. 登录
+
+```
+UserName scott
+Password TIGER
+Database ubuntu/XE
+```
+
 ## 使用dbeaver连接oracle数据库
 > 之前我已经在Ubuntu上安装了 Oracle Database Express Edition，在使用了官方的sql developer后觉得很不爽，于是就安装了dbeaver ce。
 
