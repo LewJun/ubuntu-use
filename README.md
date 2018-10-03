@@ -38,6 +38,7 @@ lewjun@ubuntu:~$
 1. HOST:ubuntu
 2. PORT:1521
 3. SERVICE_NAME:XE
+
 把这几个信息填写到dbeaver的新建连接页面，并填写正确的用户名和密码即可例如scott/TIGER。DRIVER使用odbc6.jar
 
 ## 执行rpm文件安装与卸载
