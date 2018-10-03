@@ -3,6 +3,43 @@ ubuntu 18.04.1
 
 [TOC]
 
+## 使用dbeaver连接oracle数据库
+> 之前我已经在Ubuntu上安装了 Oracle Database Express Edition，在使用了官方的sql developer后觉得很不爽，于是就安装了dbeaver ce。
+
+查看tnsnames.ora信息
+``` 
+lewjun@ubuntu:~$ cat /u01/app/oracle/product/11.2.0/xe/network/admin/tnsnames.ora 
+# tnsnames.ora Network Configuration File:
+
+XE =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = ubuntu)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = XE)
+    )
+  )
+
+EXTPROC_CONNECTION_DATA =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = IPC)(KEY = EXTPROC_FOR_XE))
+    )
+    (CONNECT_DATA =
+      (SID = PLSExtProc)
+      (PRESENTATION = RO)
+    )
+  )
+
+lewjun@ubuntu:~$ 
+```
+
+得到关键信息如下：
+1. HOST:ubuntu
+2. PORT:1521
+3. SERVICE_NAME:XE
+把这几个信息填写到dbeaver的新建连接页面，并填写正确的用户名和密码即可例如scott/TIGER。DRIVER使用odbc6.jar
+
 ## 执行rpm文件安装与卸载
 ``` sh
 > sudo alien --scripts -d sqldeveloper-18.2.0.183.1748-1.noarch.rpm
