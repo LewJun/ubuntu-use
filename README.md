@@ -3,6 +3,11 @@ ubuntu 18.04.1
 
 [TOC]
 
+## ubuntu如何删除无效的应用图标
+
+1.看/usr/share/applications下是否有xxx.desktop
+2.可以到～/.local/share/applications下看是否有xxx.desktop
+
 ## 在Ubuntu上使用plsql
 在Windows环境，我还是最喜欢使用plsql来作为Oracle的可视化工具。
 ### 安装wine
