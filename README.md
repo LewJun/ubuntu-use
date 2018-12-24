@@ -3,6 +3,28 @@ ubuntu 18.04.1
 
 [TOC]
 
+## (AndroidStudio)gradle配置多个代码仓库repositories
+```
+repositories {
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
+    maven { url 'http://maven.oschina.net/content/groups/public/' } 
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' } 
+    maven { url "http://maven.springframework.org/release" } 
+    maven { url "http://maven.restlet.org" } 
+    maven { url "http://mirrors.ibiblio.org/maven2" }
+    maven {
+        url "http://repo.baichuan-android.taobao.com/content/groups/BaichuanRepositories/"
+    }
+    maven { url 'https://maven.fabric.io/public' }
+    jcenter()
+    google()
+}
+```
+
+
 ## ubuntu如何删除无效的应用图标
 
 1.看/usr/share/applications下是否有xxx.desktop
